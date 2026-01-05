@@ -1,2 +1,2 @@
 # rss-card
-WordPress Block Plugin
+Display the latest entry from an external RSS feed.

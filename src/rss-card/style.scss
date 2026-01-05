@@ -1,0 +1,95 @@
+/**
+ * The following styles get applied both on the front of your site
+ * and in the editor.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+
+.rss-card {
+	font-family: inherit;
+	line-height: 1.5;
+	background: #fff;
+	border: 1px solid #d5dae3;
+	border-radius: 12px;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+	color: inherit;
+	overflow: hidden;
+}
+
+.rss-card__link {
+	display: flex;
+	gap: 1.25rem;
+	align-items: stretch;
+	padding: 1.25rem;
+	text-decoration: none;
+	color: inherit;
+}
+
+.rss-card__thumb {
+	width: 140px;
+	flex-shrink: 0;
+}
+
+.rss-card__thumb img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
+	border-radius: 8px;
+}
+
+.rss-card__content {
+	flex: 1;
+}
+
+.rss-card__source {
+	display: inline-block;
+	font-size: 12px;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+	color: #4f5d75;
+	margin-bottom: 0.35rem;
+}
+
+.rss-card__title {
+	font-size: 1.125rem;
+	margin: 0 0 0.5rem;
+	color: #1a1f36;
+}
+
+.rss-card__excerpt {
+	margin: 0 0 0.75rem;
+	color: #555e6a;
+}
+
+.rss-card__date {
+	font-size: 0.875rem;
+	color: #6b7280;
+}
+
+.rss-card__placeholder,
+.rss-card__error {
+	border: 1px dashed #c7ccd6;
+	border-radius: 12px;
+	padding: 1.5rem;
+	text-align: center;
+	color: #4f5d75;
+	background: #f8fafc;
+}
+
+.rss-card__error {
+	border-color: #d14343;
+	color: #b42318;
+	background: #fff5f5;
+}
+
+@media (max-width: 600px) {
+	.rss-card__link {
+		flex-direction: column;
+	}
+
+	.rss-card__thumb {
+		width: 100%;
+	}
+}
