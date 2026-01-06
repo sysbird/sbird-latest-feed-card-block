@@ -11,6 +11,10 @@
     "feedUrl": {
       "type": "string",
       "default": ""
+    },
+    "hasBorder": {
+      "type": "boolean",
+      "default": true
     }
   },
   "render": "file:./render.php",

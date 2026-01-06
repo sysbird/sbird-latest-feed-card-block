@@ -19,7 +19,7 @@ if ( ! function_exists( 'rss_card_get_feed_data' ) ) {
 	 */
 	function rss_card_get_feed_data( $feed_url ) {
 		if ( empty( $feed_url ) ) {
-			return new WP_Error( 'rss_card_empty_url', __( 'RSSのURLが設定されていません。', 'rss-card' ) );
+			return new WP_Error( 'rss_card_empty_url', __( 'No RSS URL has been set.', 'rss-card' ) );
 		}
 
 		$cache_key = 'rss_card_' . md5( $feed_url );
@@ -31,12 +31,12 @@ if ( ! function_exists( 'rss_card_get_feed_data' ) ) {
 		require_once ABSPATH . WPINC . '/feed.php';
 		$feed = fetch_feed( $feed_url );
 		if ( is_wp_error( $feed ) ) {
-			return new WP_Error( 'rss_card_invalid_feed', __( 'フィードの取得に失敗しました。', 'rss-card' ) );
+			return new WP_Error( 'rss_card_invalid_feed', __( 'Failed to fetch the feed.', 'rss-card' ) );
 		}
 
 		$items = $feed->get_items( 0, 1 );
 		if ( empty( $items ) ) {
-			return new WP_Error( 'rss_card_no_items', __( 'フィードに記事がありません。', 'rss-card' ) );
+			return new WP_Error( 'rss_card_no_items', __( 'No items were found in the feed.', 'rss-card' ) );
 		}
 
 		$item        = $items[0];
@@ -45,7 +45,7 @@ if ( ! function_exists( 'rss_card_get_feed_data' ) ) {
 		$item_date   = $item->get_date( 'U' );
 		$description = $item->get_description();
 		$content     = $item->get_content();
-		$excerpt     = wp_trim_words( wp_strip_all_tags( $description ? $description : $content ), 40 );
+		$excerpt     = wp_trim_words( wp_strip_all_tags( $description ? $description : $content ), 100 );
 		$image_url   = rss_card_extract_image( $item, $content );
 
 		$data = array(
@@ -176,13 +176,17 @@ if ( ! function_exists( 'rss_card_fetch_og_image' ) ) {
 
 return function( $attributes ) {
 	$feed_url = isset( $attributes['feedUrl'] ) ? esc_url_raw( $attributes['feedUrl'] ) : '';
+	$has_border = ! isset( $attributes['hasBorder'] ) || $attributes['hasBorder'];
+	$card_class = 'rss-card ' . ( $has_border ? 'rss-card--bordered' : 'rss-card--borderless' );
+	$placeholder_class = 'rss-card__placeholder' . ( $has_border ? '' : ' rss-card__placeholder--borderless' );
+	$error_class = 'rss-card__error' . ( $has_border ? '' : ' rss-card__error--borderless' );
 	if ( empty( $feed_url ) ) {
-		return '<p class="rss-card__placeholder">' . esc_html__( 'RSSのURLを入力してください。', 'rss-card' ) . '</p>';
+		return '<p class="' . esc_attr( $placeholder_class ) . '">' . esc_html__( 'Enter an RSS URL.', 'rss-card' ) . '</p>';
 	}
 
 	$data = rss_card_get_feed_data( $feed_url );
 	if ( is_wp_error( $data ) ) {
-		return '<p class="rss-card__error">' . esc_html( $data->get_error_message() ) . '</p>';
+		return '<p class="' . esc_attr( $error_class ) . '">' . esc_html( $data->get_error_message() ) . '</p>';
 	}
 
 	$datetime_attr = $data['itemDate'] ? gmdate( 'c', $data['itemDate'] ) : '';
@@ -190,7 +194,7 @@ return function( $attributes ) {
 
 	ob_start();
 	?>
-	<article class="rss-card">
+	<article class="<?php echo esc_attr( $card_class ); ?>">
 		<a class="rss-card__link" href="<?php echo esc_url( $data['itemLink'] ); ?>" target="_blank" rel="noopener noreferrer">
 			<?php if ( ! empty( $data['imageUrl'] ) ) : ?>
 				<div class="rss-card__thumb">

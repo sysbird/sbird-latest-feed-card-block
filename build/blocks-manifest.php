@@ -14,6 +14,10 @@ return array(
 			'feedUrl' => array(
 				'type' => 'string',
 				'default' => ''
+			),
+			'hasBorder' => array(
+				'type' => 'boolean',
+				'default' => true
 			)
 		),
 		'render' => 'file:./render.php',

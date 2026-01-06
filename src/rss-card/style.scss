@@ -6,23 +6,26 @@
  */
 
 .rss-card {
-	font-family: inherit;
-	line-height: 1.5;
-	background: #fff;
-	border: 1px solid #d5dae3;
-	border-radius: 12px;
-	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-	color: inherit;
 	overflow: hidden;
+	margin-bottom: 1.25em;
+}
+
+.rss-card--bordered {
+	background: #fff;
+	border: 1px solid #ddd;
+	border-radius: 10px;
 }
 
 .rss-card__link {
 	display: flex;
-	gap: 1.25rem;
+	gap: 1.25em;
 	align-items: stretch;
-	padding: 1.25rem;
 	text-decoration: none;
 	color: inherit;
+}
+
+.rss-card--bordered .rss-card__link {
+	padding: 1.25em;
 }
 
 .rss-card__thumb {
@@ -35,7 +38,7 @@
 	height: 100%;
 	object-fit: cover;
 	display: block;
-	border-radius: 8px;
+	border-radius: 5px;
 }
 
 .rss-card__content {
@@ -49,22 +52,22 @@
 	text-transform: uppercase;
 	letter-spacing: 0.05em;
 	color: #4f5d75;
-	margin-bottom: 0.35rem;
+	margin-bottom: 0.35em;
 }
 
 .rss-card__title {
-	font-size: 1.125rem;
-	margin: 0 0 0.5rem;
+	font-size: 1.125em;
+	margin: 0 0 0.5em;
 	color: #1a1f36;
 }
 
 .rss-card__excerpt {
-	margin: 0 0 0.75rem;
+	margin: 0 0 0.75em;
 	color: #555e6a;
 }
 
 .rss-card__date {
-	font-size: 0.875rem;
+	font-size: 0.875em;
 	color: #6b7280;
 }
 
@@ -72,10 +75,17 @@
 .rss-card__error {
 	border: 1px dashed #c7ccd6;
 	border-radius: 12px;
-	padding: 1.5rem;
+	padding: 1.5em;
 	text-align: center;
 	color: #4f5d75;
 	background: #f8fafc;
+}
+
+.rss-card__placeholder--borderless,
+.rss-card__error--borderless {
+	border: 0;
+	border-radius: 0;
+	background: transparent;
 }
 
 .rss-card__error {
