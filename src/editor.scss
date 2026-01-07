@@ -4,14 +4,15 @@
  * Replace them with your own styles or remove the file completely.
  */
 
-.rss-card {
+.rss-card-editor {
 	width: 100%;
+	border: 1px dotted #ccc;
+	padding: 5px;
+	margin-bottom: 1em;
+
+	.rss-card__link {
+		pointer-events: none;
+	}
 }
 
-.rss-card__link {
-	pointer-events: none;
-}
 
-.rss-card .rss-card__placeholder {
-	font-size: 0.95rem;
-}

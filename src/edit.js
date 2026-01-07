@@ -13,8 +13,7 @@ import './editor.scss';
 
 export default function Edit( { attributes, setAttributes } ) {
 	const { feedUrl, hasBorder } = attributes;
-	const blockClassName = `rss-card ${ hasBorder ? 'rss-card--bordered' : 'rss-card--borderless' }`;
-	const blockProps = useBlockProps( { className: blockClassName } );
+	const blockProps = useBlockProps( { className: 'rss-card-editor' } );
 	const placeholderClassName = `rss-card__placeholder${
 		hasBorder ? '' : ' rss-card__placeholder--borderless'
 	}`;

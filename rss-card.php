@@ -125,12 +125,12 @@ add_action( 'enqueue_block_assets', 'rss_card_enqueue_block_style' );
 function rss_card_enqueue_editor_style() {
 	$editor_candidates = array(
 		array(
-			'path' => __DIR__ . '/build/editorStyle.css',
-			'url'  => plugins_url( 'build/editorStyle.css', __FILE__ ),
+			'path' => __DIR__ . '/build/editor.css',
+			'url'  => plugins_url( 'build/editor.css', __FILE__ ),
 		),
 		array(
-			'path' => __DIR__ . '/build/rss-card/editorStyle.css',
-			'url'  => plugins_url( 'build/rss-card/editorStyle.css', __FILE__ ),
+			'path' => __DIR__ . '/build/rss-card/editor.css',
+			'url'  => plugins_url( 'build/rss-card/editor.css', __FILE__ ),
 		),
 		array(
 			'path' => __DIR__ . '/build/index.css',

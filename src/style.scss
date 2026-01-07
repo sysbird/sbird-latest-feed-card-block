@@ -11,7 +11,6 @@
 }
 
 .rss-card--bordered {
-	background: #fff;
 	border: 1px solid #ddd;
 	border-radius: 10px;
 }
@@ -47,11 +46,11 @@
 
 .rss-card__source {
 	display: inline-block;
-	font-size: 12px;
-	font-weight: 600;
+	font-size: .9em;
+	font-weight: bold;
 	text-transform: uppercase;
 	letter-spacing: 0.05em;
-	color: #4f5d75;
+	color: #666;
 	margin-bottom: 0.35em;
 }
 

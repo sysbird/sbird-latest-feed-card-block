@@ -28,6 +28,6 @@ return array(
 		),
 		'textdomain' => 'rss-card',
 		'editorScript' => 'file:./index.js',
-		'editorStyle' => 'file:./editorStyle.css'
+		'editorStyle' => 'file:./editor.css'
 	)
 );

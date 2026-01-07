@@ -21,7 +21,7 @@ const renameEditorCss = (destinationDir) => {
 	}
 
 	const sourceCss = path.join(destinationDir, 'index.css');
-	const targetCss = path.join(destinationDir, 'editorStyle.css');
+	const targetCss = path.join(destinationDir, 'editor.css');
 	if (fs.existsSync(sourceCss)) {
 		fs.renameSync(sourceCss, targetCss);
 	}
@@ -45,7 +45,7 @@ const replaceEditorCssReference = (filePath) => {
 	}
 
 	const contents = fs.readFileSync(filePath, 'utf8');
-	let updated = contents.replace(/file:\.\/index\.css/g, 'file:./editorStyle.css');
+	let updated = contents.replace(/file:\.\/index\.css/g, 'file:./editor.css');
 	updated = updated.replace(/file:\.\/style-index\.css/g, 'file:./style.css');
 	if (updated !== contents) {
 		fs.writeFileSync(filePath, updated);
