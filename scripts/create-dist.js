@@ -40,6 +40,19 @@ for (const target of copyTargets) {
 		continue;
 	}
 
+	if (target === 'build') {
+		const nestedBuild = path.join(sourcePath, 'rss-card');
+		const distBuild = path.join(distDir, 'build');
+		if (fs.existsSync(nestedBuild)) {
+			copyRecursive(nestedBuild, distBuild);
+			const manifest = path.join(sourcePath, 'blocks-manifest.php');
+			if (fs.existsSync(manifest)) {
+				copyRecursive(manifest, path.join(distBuild, 'blocks-manifest.php'));
+			}
+			continue;
+		}
+	}
+
 	copyRecursive(sourcePath, path.join(distDir, target));
 }
 

@@ -7,6 +7,7 @@
 	"main": "build/index.js",
 	"scripts": {
 		"build": "wp-scripts build --blocks-manifest",
+		"postbuild": "node ./scripts/copy-build-assets.js",
 		"dist": "npm run build && node ./scripts/create-dist.js",
 		"format": "wp-scripts format",
 		"lint:css": "wp-scripts lint-style",
