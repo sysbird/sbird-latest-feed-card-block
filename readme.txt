@@ -6,13 +6,13 @@ Stable tag:        1.0.0
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 
+Display the latest entry from an external RSS feed.
+
 == Description ==
 
 This block fetches only the most recent item from another site's RSS feed and displays it as a card-style layout.
 
-Author: [sysbird](https://profiles.wordpress.org/sysbird/)
-
-= Plugin Features =
+= How to use =
 
 1. Add the RSS Card block in the editor.
 2. Enter the RSS feed URL you want to fetch in the panel setting [RSS URL].
@@ -23,9 +23,9 @@ Author: [sysbird](https://profiles.wordpress.org/sysbird/)
 == Installation ==
 
 This section describes how to install the plugin and get it working.
-
 1. Upload the plugin files to the `/wp-content/plugins/rss-card` directory, or install the plugin through the WordPress plugins screen directly.
 2. Activate the plugin through the 'Plugins' screen in WordPress
+3. Use the block editor to add a “RSS Card” block to your post or page.
 
 == Screenshots ==
 
