@@ -177,7 +177,14 @@ if ( ! function_exists( 'rss_card_fetch_og_image' ) ) {
 return function( $attributes ) {
 	$feed_url = isset( $attributes['feedUrl'] ) ? esc_url_raw( $attributes['feedUrl'] ) : '';
 	$has_border = ! isset( $attributes['hasBorder'] ) || $attributes['hasBorder'];
-	$card_class = 'rss-card ' . ( $has_border ? 'rss-card--bordered' : 'rss-card--borderless' );
+	$layout = isset( $attributes['layout'] ) ? $attributes['layout'] : 'horizontal';
+	if ( 'horizontal-left' === $layout ) {
+		$layout = 'horizontal';
+	} elseif ( 'vertical-top' === $layout ) {
+		$layout = 'vertical';
+	}
+	$layout_class = 'horizontal' === $layout ? 'rss-card--layout-horizontal' : 'rss-card--layout-vertical';
+	$card_class = 'rss-card ' . $layout_class . ' ' . ( $has_border ? 'rss-card--bordered' : 'rss-card--borderless' );
 	$placeholder_class = 'rss-card__placeholder' . ( $has_border ? '' : ' rss-card__placeholder--borderless' );
 	$error_class = 'rss-card__error' . ( $has_border ? '' : ' rss-card__error--borderless' );
 	if ( empty( $feed_url ) ) {

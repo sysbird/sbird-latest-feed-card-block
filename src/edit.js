@@ -5,14 +5,24 @@
  */
 import { __ } from '@wordpress/i18n';
 import { InspectorControls, useBlockProps } from '@wordpress/block-editor';
-import { PanelBody, TextControl, ToggleControl } from '@wordpress/components';
+import { PanelBody, RadioControl, TextControl, ToggleControl } from '@wordpress/components';
 import ServerSideRender from '@wordpress/server-side-render';
 
 import metadata from './block.json';
 import './editor.scss';
 
 export default function Edit( { attributes, setAttributes } ) {
-	const { feedUrl, hasBorder } = attributes;
+	const { feedUrl, hasBorder, layout } = attributes;
+	const normalizeLayout = ( value ) => {
+		if ( value === 'horizontal-left' ) {
+			return 'horizontal';
+		}
+		if ( value === 'vertical-top' ) {
+			return 'vertical';
+		}
+		return value;
+	};
+	const layoutValue = normalizeLayout( layout ) || 'horizontal';
 	const blockProps = useBlockProps( { className: 'rss-card-editor' } );
 	const placeholderClassName = `rss-card__placeholder${
 		hasBorder ? '' : ' rss-card__placeholder--borderless'
@@ -32,6 +42,26 @@ export default function Edit( { attributes, setAttributes } ) {
 						label={ __( 'Border', 'rss-card' ) }
 						checked={ hasBorder }
 						onChange={ ( value ) => setAttributes( { hasBorder: value } ) }
+					/>
+					<RadioControl
+						label={ __( 'Layout', 'rss-card' ) }
+						selected={ layoutValue }
+						options={ [
+							{
+								label: __( 'Horizontal', 'rss-card' ),
+								value: 'horizontal',
+							},
+							{
+								label: __( 'Vertical', 'rss-card' ),
+								value: 'vertical',
+							},
+						] }
+						onChange={ ( value ) => {
+							const normalized = normalizeLayout( value );
+							setAttributes( {
+								layout: normalized === 'horizontal' ? undefined : normalized,
+							} );
+						} }
 					/>
 				</PanelBody>
 			</InspectorControls>

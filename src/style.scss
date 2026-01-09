@@ -23,6 +23,10 @@
 	color: inherit;
 }
 
+.rss-card--layout-vertical .rss-card__link {
+	flex-direction: column;
+}
+
 .rss-card--bordered .rss-card__link {
 	padding: 1.25em;
 }
@@ -30,6 +34,10 @@
 .rss-card__thumb {
 	width: 140px;
 	flex-shrink: 0;
+}
+
+.rss-card--layout-vertical .rss-card__thumb {
+	width: 100%;
 }
 
 .rss-card__thumb img {
@@ -57,17 +65,15 @@
 .rss-card__title {
 	font-size: 1.125em;
 	margin: 0 0 0.5em;
-	color: #1a1f36;
 }
 
 .rss-card__excerpt {
 	margin: 0 0 0.75em;
-	color: #555e6a;
 }
 
 .rss-card__date {
 	font-size: 0.875em;
-	color: #6b7280;
+	color: #666;
 }
 
 .rss-card__placeholder,

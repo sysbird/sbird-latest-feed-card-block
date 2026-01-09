@@ -5,7 +5,7 @@ return array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
 		'name' => 'sysbird/rss-card',
-		'version' => '0.1.0',
+		'version' => '1.0.0',
 		'title' => 'RSS Card',
 		'category' => 'embed',
 		'description' => 'Display the latest entry from an external RSS feed.',
@@ -17,6 +17,10 @@ return array(
 			'hasBorder' => array(
 				'type' => 'boolean',
 				'default' => true
+			),
+			'layout' => array(
+				'type' => 'string',
+				'default' => 'horizontal'
 			)
 		),
 		'render' => 'file:./render.php',

@@ -1,55 +1,38 @@
 === RSS Card ===
 Contributors:      sysbird
-Tags:              block
+Tags:              block, rss
 Tested up to:      6.8
 Stable tag:        1.0.0
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 
-Display the latest entry from an external RSS feed.
-
 == Description ==
 
-This is the long description. No limit, and you can use Markdown (as well as in the following sections).
+This block fetches only the most recent item from another site's RSS feed and displays it as a card-style layout.
 
-For backwards compatibility, if this section is missing, the full length of the short description will be used, and
-Markdown parsed.
+Author: [sysbird](https://profiles.wordpress.org/sysbird/)
+
+= Plugin Features =
+
+1. Add the RSS Card block in the editor.
+2. Enter the RSS feed URL you want to fetch in the panel setting [RSS URL].
+3. Using the site’s URL instead of the RSS feed URL is also OK
+4. You can choose to show or hide the border.
+5. You can choose a vertical or horizontal layout.
 
 == Installation ==
 
 This section describes how to install the plugin and get it working.
 
-e.g.
-
 1. Upload the plugin files to the `/wp-content/plugins/rss-card` directory, or install the plugin through the WordPress plugins screen directly.
-1. Activate the plugin through the 'Plugins' screen in WordPress
-
-
-== Frequently Asked Questions ==
-
-= A question that someone might have =
-
-An answer to that question.
-
-= What about foo bar? =
-
-Answer to foo bar dilemma.
+2. Activate the plugin through the 'Plugins' screen in WordPress
 
 == Screenshots ==
 
-1. This screen shot description corresponds to screenshot-1.(png|jpg|jpeg|gif). Note that the screenshot is taken from
-the /assets directory or the directory that contains the stable readme.txt (tags or trunk). Screenshots in the /assets
-directory take precedence. For example, `/assets/screenshot-1.png` would win over `/tags/4.3/screenshot-1.png`
-(or jpg, jpeg, gif).
-2. This is the second screen shot
+1. Enter the RSS feed URL you want to fetch in the panel setting [RSS URL].
+2. Display the latest entry from an external RSS feed.
 
 == Changelog ==
 
-= 0.1.0 =
+= 1.0.0 =
 * Release
-
-== Arbitrary section ==
-
-You may provide arbitrary sections, in the same format as the ones above. This may be of use for extremely complicated
-plugins where more information needs to be conveyed that doesn't fit into the categories of "description" or
-"installation." Arbitrary sections will be shown below the built-in sections outlined above.

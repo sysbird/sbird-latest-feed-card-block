@@ -1,6 +1,6 @@
 {
 	"name": "rss-card",
-	"version": "0.1.0",
+	"version": "1.0.0",
 	"description": "Display the latest entry from an external RSS feed.",
 	"author": "The WordPress Contributors",
 	"license": "GPL-2.0-or-later",
