@@ -9,10 +9,9 @@
 	border: 1px dotted #ccc;
 	padding: 5px;
 	margin-bottom: 1em;
-
-	.rss-card__link {
-		pointer-events: none;
-	}
 }
 
+.rss-card-editor .rss-card__link {
+	pointer-events: none;
+}
 

@@ -3,13 +3,13 @@ const path = require('path');
 const { execFileSync } = require('child_process');
 
 const rootDir = path.resolve(__dirname, '..');
-const distDir = path.join(rootDir, 'dist', 'rss-card');
+const distDir = path.join(rootDir, 'dist', 'sbird-latest-feed-card-block');
 const distRoot = path.join(rootDir, 'dist');
-const zipPath = path.join(distRoot, 'rss-card.zip');
+const zipPath = path.join(distRoot, 'sbird-latest-feed-card-block.zip');
 
 const copyTargets = [
 	'build',
-	'rss-card.php',
+	'sbird-latest-feed-card-block.php',
 	'readme.txt',
 	'README.md',
 	'LICENSE',
@@ -29,6 +29,12 @@ const copyRecursive = (source, destination) => {
 	fs.copyFileSync(source, destination);
 };
 
+const copyDirectoryContents = (sourceDir, destinationDir) => {
+	for (const entry of fs.readdirSync(sourceDir)) {
+		copyRecursive(path.join(sourceDir, entry), path.join(destinationDir, entry));
+	}
+};
+
 if (fs.existsSync(distDir)) {
 	fs.rmSync(distDir, { recursive: true, force: true });
 }
@@ -42,15 +48,13 @@ for (const target of copyTargets) {
 
 	if (target === 'build') {
 		const nestedBuild = path.join(sourcePath, 'rss-card');
-		const distBuild = path.join(distDir, 'build');
-		if (fs.existsSync(nestedBuild)) {
-			copyRecursive(nestedBuild, distBuild);
-			const manifest = path.join(sourcePath, 'blocks-manifest.php');
-			if (fs.existsSync(manifest)) {
-				copyRecursive(manifest, path.join(distBuild, 'blocks-manifest.php'));
-			}
-			continue;
+		const sourceBuildDir = fs.existsSync(nestedBuild) ? nestedBuild : sourcePath;
+		copyDirectoryContents(sourceBuildDir, distDir);
+		const manifest = path.join(sourcePath, 'blocks-manifest.php');
+		if (fs.existsSync(manifest)) {
+			copyRecursive(manifest, path.join(distDir, 'blocks-manifest.php'));
 		}
+		continue;
 	}
 
 	copyRecursive(sourcePath, path.join(distDir, target));
@@ -63,7 +67,7 @@ try {
 		fs.rmSync(zipPath, { force: true });
 	}
 	// Use system zip to create dist/rss-card.zip from dist/rss-card.
-	execFileSync('zip', ['-r', zipPath, 'rss-card'], {
+	execFileSync('zip', ['-r', zipPath, 'sbird-latest-feed-card-block'], {
 		cwd: distRoot,
 		stdio: 'inherit',
 	});

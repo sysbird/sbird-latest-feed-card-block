@@ -1,4 +1,4 @@
-=== RSS Card ===
+=== sBird Latest Feed Card Block ===
 Contributors:      sysbird
 Tags:              block, rss
 Tested up to:      6.9
@@ -14,8 +14,8 @@ This block fetches only the most recent item from another site's RSS feed and di
 
 = How to use =
 
-1. Add the RSS Card block in the editor.
-2. Enter the RSS feed URL you want to fetch in the panel setting [RSS URL].
+1. Add the sBird Latest Feed Card Block in the editor.
+2. Enter the RSS feed URL you want to fetch in the panel setting [Feed URL].
 3. Using the site’s URL instead of the RSS feed URL is also OK
 4. You can choose to show or hide the border.
 5. You can choose a vertical or horizontal layout.
@@ -23,9 +23,9 @@ This block fetches only the most recent item from another site's RSS feed and di
 == Installation ==
 
 This section describes how to install the plugin and get it working.
-1. Upload the plugin files to the `/wp-content/plugins/rss-card` directory, or install the plugin through the WordPress plugins screen directly.
+1. Upload the plugin files to the `/wp-content/plugins/sbird-latest-feed-card-block` directory, or install the plugin through the WordPress plugins screen directly.
 2. Activate the plugin through the 'Plugins' screen in WordPress
-3. Use the block editor to add a “RSS Card” block to your post or page.
+3. Use the block editor to add “sBird Latest Feed Card Block” to your post or page.
 
 == Screenshots ==
 

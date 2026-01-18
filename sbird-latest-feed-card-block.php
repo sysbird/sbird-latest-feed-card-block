@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name:       RSS Card
+ * Plugin Name:       sBird Latest Feed Card Block
  * Description:       Display the latest entry from an external RSS feed.
  * Version:           1.0.0
  * Requires at least: 6.7
@@ -9,7 +9,7 @@
  * Author URI:        https://profiles.wordpress.org/sysbird/
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain:       rss-card
+ * Text Domain:      sbird-latest-feed-card-block
  *
  * @package CreateBlock
  */
@@ -25,9 +25,12 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @see https://make.wordpress.org/core/2025/03/13/more-efficient-block-type-registration-in-6-8/
  * @see https://make.wordpress.org/core/2024/10/17/new-block-type-registration-apis-to-improve-performance-in-wordpress-6-7/
  */
-function rss_card_block_init() {
+function sbird_latest_feed_card_block_init() {
 	$build_dir = __DIR__ . '/build';
-	$manifest  = $build_dir . '/blocks-manifest.php';
+	if ( file_exists( __DIR__ . '/block.json' ) ) {
+		$build_dir = __DIR__;
+	}
+	$manifest = $build_dir . '/blocks-manifest.php';
 
 	if ( file_exists( $build_dir . '/block.json' ) ) {
 		register_block_type( $build_dir );
@@ -64,7 +67,7 @@ function rss_card_block_init() {
 		register_block_type( "{$build_dir}/{$block_type}" );
 	}
 }
-add_action( 'init', 'rss_card_block_init' );
+add_action( 'init', 'sbird_latest_feed_card_block_init' );
 
 /**
  * Ensure dynamic rendering is wired for WordPress versions that ignore `render` in block.json.
@@ -74,20 +77,24 @@ add_action( 'init', 'rss_card_block_init' );
  *
  * @return array
  */
-function rss_card_filter_metadata_settings( $settings, $metadata ) {
+function sbird_latest_feed_card_block_filter_metadata_settings( $settings, $metadata ) {
 	if ( isset( $metadata['name'] ) && 'sysbird/rss-card' === $metadata['name'] ) {
-		$settings['render_callback'] = 'rss_card_render';
+		$settings['render_callback'] = 'sbird_latest_feed_card_block_render';
 	}
 
 	return $settings;
 }
-add_filter( 'block_type_metadata_settings', 'rss_card_filter_metadata_settings', 10, 2 );
+add_filter( 'block_type_metadata_settings', 'sbird_latest_feed_card_block_filter_metadata_settings', 10, 2 );
 
 /**
  * Enqueue front-end styles from a real file for both front-end and editor.
  */
-function rss_card_enqueue_block_style() {
+function sbird_latest_feed_card_block_enqueue_block_style() {
 	$candidates = array(
+		array(
+			'path' => __DIR__ . '/style.css',
+			'url'  => plugins_url( 'style.css', __FILE__ ),
+		),
 		array(
 			'path' => __DIR__ . '/build/style.css',
 			'url'  => plugins_url( 'build/style.css', __FILE__ ),
@@ -118,13 +125,21 @@ function rss_card_enqueue_block_style() {
 		}
 	}
 }
-add_action( 'enqueue_block_assets', 'rss_card_enqueue_block_style' );
+add_action( 'enqueue_block_assets', 'sbird_latest_feed_card_block_enqueue_block_style' );
 
 /**
  * Enqueue front-end styles inside the editor as well.
  */
-function rss_card_enqueue_editor_style() {
+function sbird_latest_feed_card_block_enqueue_editor_style() {
 	$editor_candidates = array(
+		array(
+			'path' => __DIR__ . '/editor.css',
+			'url'  => plugins_url( 'editor.css', __FILE__ ),
+		),
+		array(
+			'path' => __DIR__ . '/index.css',
+			'url'  => plugins_url( 'index.css', __FILE__ ),
+		),
 		array(
 			'path' => __DIR__ . '/build/editor.css',
 			'url'  => plugins_url( 'build/editor.css', __FILE__ ),
@@ -155,7 +170,7 @@ function rss_card_enqueue_editor_style() {
 		}
 	}
 }
-add_action( 'enqueue_block_editor_assets', 'rss_card_enqueue_editor_style' );
+add_action( 'enqueue_block_editor_assets', 'sbird_latest_feed_card_block_enqueue_editor_style' );
 
 /**
  * Render callback for the RSS Card block.
@@ -164,8 +179,9 @@ add_action( 'enqueue_block_editor_assets', 'rss_card_enqueue_editor_style' );
  *
  * @return string
  */
-function rss_card_render( $attributes ) {
+function sbird_latest_feed_card_block_render( $attributes ) {
 	$render_file_candidates = array(
+		__DIR__ . '/render.php',
 		__DIR__ . '/build/rss-card/render.php',
 		__DIR__ . '/build/render.php',
 	);

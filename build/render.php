@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-if ( ! function_exists( 'rss_card_get_feed_data' ) ) {
+if ( ! function_exists( 'sbird_latest_feed_card_block_get_feed_data' ) ) {
 	/**
 	 * Retrieve the latest item from the provided feed URL.
 	 *
@@ -17,12 +17,12 @@ if ( ! function_exists( 'rss_card_get_feed_data' ) ) {
 	 *
 	 * @return array|WP_Error
 	 */
-	function rss_card_get_feed_data( $feed_url ) {
+	function sbird_latest_feed_card_block_get_feed_data( $feed_url ) {
 		if ( empty( $feed_url ) ) {
-			return new WP_Error( 'rss_card_empty_url', __( 'No RSS URL has been set.', 'rss-card' ) );
+			return new WP_Error( 'sbird_latest_feed_card_block_empty_url', __( 'No Feed URL has been set.', 'sbird-latest-feed-card-block' ) );
 		}
 
-		$cache_key = 'rss_card_' . md5( $feed_url );
+		$cache_key = 'sbird_latest_feed_card_block_' . md5( $feed_url );
 		$cached    = get_transient( $cache_key );
 		if ( false !== $cached ) {
 			return $cached;
@@ -31,12 +31,12 @@ if ( ! function_exists( 'rss_card_get_feed_data' ) ) {
 		require_once ABSPATH . WPINC . '/feed.php';
 		$feed = fetch_feed( $feed_url );
 		if ( is_wp_error( $feed ) ) {
-			return new WP_Error( 'rss_card_invalid_feed', __( 'Failed to fetch the feed.', 'rss-card' ) );
+			return new WP_Error( 'sbird_latest_feed_card_block_invalid_feed', __( 'Failed to fetch the feed.', 'sbird-latest-feed-card-block' ) );
 		}
 
 		$items = $feed->get_items( 0, 1 );
 		if ( empty( $items ) ) {
-			return new WP_Error( 'rss_card_no_items', __( 'No items were found in the feed.', 'rss-card' ) );
+			return new WP_Error( 'sbird_latest_feed_card_block_no_items', __( 'No items were found in the feed.', 'sbird-latest-feed-card-block' ) );
 		}
 
 		$item        = $items[0];
@@ -46,7 +46,7 @@ if ( ! function_exists( 'rss_card_get_feed_data' ) ) {
 		$description = $item->get_description();
 		$content     = $item->get_content();
 		$excerpt     = wp_trim_words( wp_strip_all_tags( $description ? $description : $content ), 100 );
-		$image_url   = rss_card_extract_image( $item, $content );
+		$image_url   = sbird_latest_feed_card_block_extract_image( $item, $content );
 
 		$data = array(
 			'feedTitle'   => wp_strip_all_tags( $feed->get_title() ),
@@ -64,7 +64,7 @@ if ( ! function_exists( 'rss_card_get_feed_data' ) ) {
 	}
 }
 
-if ( ! function_exists( 'rss_card_extract_image' ) ) {
+if ( ! function_exists( 'sbird_latest_feed_card_block_extract_image' ) ) {
 	/**
 	 * Attempt to grab an image URL from the feed item.
 	 *
@@ -73,7 +73,7 @@ if ( ! function_exists( 'rss_card_extract_image' ) ) {
 	 *
 	 * @return string
 	 */
-	function rss_card_extract_image( $item, $content ) {
+	function sbird_latest_feed_card_block_extract_image( $item, $content ) {
 		$enclosure = $item->get_enclosure();
 		if ( $enclosure && $enclosure->get_link() ) {
 			return esc_url_raw( $enclosure->get_link() );
@@ -101,7 +101,7 @@ if ( ! function_exists( 'rss_card_extract_image' ) ) {
 			return esc_url_raw( $matches[1] );
 		}
 
-		$og_image = rss_card_fetch_og_image( $item->get_permalink() );
+		$og_image = sbird_latest_feed_card_block_fetch_og_image( $item->get_permalink() );
 		if ( $og_image ) {
 			return esc_url_raw( $og_image );
 		}
@@ -110,7 +110,7 @@ if ( ! function_exists( 'rss_card_extract_image' ) ) {
 	}
 }
 
-if ( ! function_exists( 'rss_card_fetch_og_image' ) ) {
+if ( ! function_exists( 'sbird_latest_feed_card_block_fetch_og_image' ) ) {
 	/**
 	 * Fetch og:image from the entry URL.
 	 *
@@ -118,13 +118,13 @@ if ( ! function_exists( 'rss_card_fetch_og_image' ) ) {
 	 *
 	 * @return string
 	 */
-	function rss_card_fetch_og_image( $url ) {
+	function sbird_latest_feed_card_block_fetch_og_image( $url ) {
 		if ( empty( $url ) ) {
 			return '';
 		}
 
 		$url       = esc_url_raw( $url );
-		$cache_key = 'rss_card_og_v2_' . md5( $url );
+		$cache_key = 'sbird_latest_feed_card_block_og_v2_' . md5( $url );
 		$cached    = get_transient( $cache_key );
 		if ( false !== $cached ) {
 			return $cached;
@@ -188,10 +188,10 @@ return function( $attributes ) {
 	$placeholder_class = 'rss-card__placeholder' . ( $has_border ? '' : ' rss-card__placeholder--borderless' );
 	$error_class = 'rss-card__error' . ( $has_border ? '' : ' rss-card__error--borderless' );
 	if ( empty( $feed_url ) ) {
-		return '<p class="' . esc_attr( $placeholder_class ) . '">' . esc_html__( 'Enter an RSS URL.', 'rss-card' ) . '</p>';
+		return '<p class="' . esc_attr( $placeholder_class ) . '">' . esc_html__( 'Enter an Feed URL.', 'sbird-latest-feed-card-block' ) . '</p>';
 	}
 
-	$data = rss_card_get_feed_data( $feed_url );
+	$data = sbird_latest_feed_card_block_get_feed_data( $feed_url );
 	if ( is_wp_error( $data ) ) {
 		return '<p class="' . esc_attr( $error_class ) . '">' . esc_html( $data->get_error_message() ) . '</p>';
 	}

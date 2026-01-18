@@ -9,7 +9,7 @@ import { PanelBody, RadioControl, TextControl, ToggleControl } from '@wordpress/
 import ServerSideRender from '@wordpress/server-side-render';
 
 import metadata from './block.json';
-import './editor.scss';
+import './editor.css';
 
 export default function Edit( { attributes, setAttributes } ) {
 	const { feedUrl, hasBorder, layout } = attributes;
@@ -31,28 +31,28 @@ export default function Edit( { attributes, setAttributes } ) {
 	return (
 		<>
 			<InspectorControls>
-				<PanelBody title={ __( 'RSS Settings', 'rss-card' ) } initialOpen>
+				<PanelBody title={ __( 'Feed Settings', 'sbird-latest-feed-card-block' ) } initialOpen>
 					<TextControl
-						label={ __( 'RSS URL', 'rss-card' ) }
+						label={ __( 'Feed URL', 'sbird-latest-feed-card-block' ) }
 						value={ feedUrl }
 						onChange={ ( value ) => setAttributes( { feedUrl: value } ) }
 						placeholder="https://example.com/feed"
 					/>
 					<ToggleControl
-						label={ __( 'Border', 'rss-card' ) }
+						label={ __( 'Border', 'sbird-latest-feed-card-block' ) }
 						checked={ hasBorder }
 						onChange={ ( value ) => setAttributes( { hasBorder: value } ) }
 					/>
 					<RadioControl
-						label={ __( 'Layout', 'rss-card' ) }
+						label={ __( 'Layout', 'sbird-latest-feed-card-block' ) }
 						selected={ layoutValue }
 						options={ [
 							{
-								label: __( 'Horizontal', 'rss-card' ),
+								label: __( 'Horizontal', 'sbird-latest-feed-card-block' ),
 								value: 'horizontal',
 							},
 							{
-								label: __( 'Vertical', 'rss-card' ),
+								label: __( 'Vertical', 'sbird-latest-feed-card-block' ),
 								value: 'vertical',
 							},
 						] }
@@ -70,7 +70,7 @@ export default function Edit( { attributes, setAttributes } ) {
 					<ServerSideRender block={ metadata.name } attributes={ attributes } />
 				) : (
 					<p className={ placeholderClassName }>
-						{ __( 'Enter an RSS URL.', 'rss-card' ) }
+						{ __( 'Enter an RSS URL.', 'sbird-latest-feed-card-block' ) }
 					</p>
 				) }
 			</div>
