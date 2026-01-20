@@ -4,14 +4,14 @@
  * Replace them with your own styles or remove the file completely.
  */
 
-.rss-card-editor {
+.sbird-latest-feed-card-block-editor {
 	width: 100%;
 	border: 1px dotted #ccc;
 	padding: 5px;
 	margin-bottom: 1em;
 }
 
-.rss-card-editor .rss-card__link {
+.sbird-latest-feed-card-block-editor .sbird-latest-feed-card-block__link {
 	pointer-events: none;
 }
 

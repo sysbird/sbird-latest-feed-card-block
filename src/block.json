@@ -1,8 +1,8 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
-	"name": "sysbird/rss-card",
-	"version": "1.0.0",
+	"name": "sysbird/sbird-latest-feed-card-block",
+	"version": "1.0.1",
 	"title": "sBird Latest Feed Card Block",
 	"category": "embed",
 	"description": "Display the latest entry from an external RSS feed.",

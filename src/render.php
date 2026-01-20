@@ -1,8 +1,8 @@
 <?php
 /**
- * Server-side rendering for the RSS Card block.
+ * Server-side rendering for the sBird Latest Feed Card Block.
  *
- * @package rss-card
+ * @package sbird-latest-feed-card-block
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -134,7 +134,7 @@ if ( ! function_exists( 'sbird_latest_feed_card_block_fetch_og_image' ) ) {
 			$url,
 			array(
 				'timeout'    => 6,
-				'user-agent' => 'WordPress RSS Card',
+				'user-agent' => 'WordPress sBird Latest Feed Card Block',
 			)
 		);
 
@@ -183,10 +183,10 @@ return function( $attributes ) {
 	} elseif ( 'vertical-top' === $layout ) {
 		$layout = 'vertical';
 	}
-	$layout_class = 'horizontal' === $layout ? 'rss-card--layout-horizontal' : 'rss-card--layout-vertical';
-	$card_class = 'rss-card ' . $layout_class . ' ' . ( $has_border ? 'rss-card--bordered' : 'rss-card--borderless' );
-	$placeholder_class = 'rss-card__placeholder' . ( $has_border ? '' : ' rss-card__placeholder--borderless' );
-	$error_class = 'rss-card__error' . ( $has_border ? '' : ' rss-card__error--borderless' );
+	$layout_class = 'horizontal' === $layout ? 'sbird-latest-feed-card-block--layout-horizontal' : 'sbird-latest-feed-card-block--layout-vertical';
+	$card_class = 'sbird-latest-feed-card-block ' . $layout_class . ' ' . ( $has_border ? 'sbird-latest-feed-card-block--bordered' : 'sbird-latest-feed-card-block--borderless' );
+	$placeholder_class = 'sbird-latest-feed-card-block__placeholder' . ( $has_border ? '' : ' sbird-latest-feed-card-block__placeholder--borderless' );
+	$error_class = 'sbird-latest-feed-card-block__error' . ( $has_border ? '' : ' sbird-latest-feed-card-block__error--borderless' );
 	if ( empty( $feed_url ) ) {
 		return '<p class="' . esc_attr( $placeholder_class ) . '">' . esc_html__( 'Enter an Feed URL.', 'sbird-latest-feed-card-block' ) . '</p>';
 	}
@@ -202,22 +202,22 @@ return function( $attributes ) {
 	ob_start();
 	?>
 	<article class="<?php echo esc_attr( $card_class ); ?>">
-		<a class="rss-card__link" href="<?php echo esc_url( $data['itemLink'] ); ?>" target="_blank" rel="noopener noreferrer">
+		<a class="sbird-latest-feed-card-block__link" href="<?php echo esc_url( $data['itemLink'] ); ?>" target="_blank" rel="noopener noreferrer">
 			<?php if ( ! empty( $data['imageUrl'] ) ) : ?>
-				<div class="rss-card__thumb">
+				<div class="sbird-latest-feed-card-block__thumb">
 					<img src="<?php echo esc_url( $data['imageUrl'] ); ?>" alt="">
 				</div>
 			<?php endif; ?>
-			<div class="rss-card__content">
+			<div class="sbird-latest-feed-card-block__content">
 				<?php if ( ! empty( $data['feedTitle'] ) ) : ?>
-					<span class="rss-card__source"><?php echo esc_html( $data['feedTitle'] ); ?></span>
+					<span class="sbird-latest-feed-card-block__source"><?php echo esc_html( $data['feedTitle'] ); ?></span>
 				<?php endif; ?>
-				<h3 class="rss-card__title"><?php echo esc_html( $data['itemTitle'] ); ?></h3>
+				<h3 class="sbird-latest-feed-card-block__title"><?php echo esc_html( $data['itemTitle'] ); ?></h3>
 				<?php if ( ! empty( $data['itemExcerpt'] ) ) : ?>
-					<p class="rss-card__excerpt"><?php echo esc_html( $data['itemExcerpt'] ); ?></p>
+					<p class="sbird-latest-feed-card-block__excerpt"><?php echo esc_html( $data['itemExcerpt'] ); ?></p>
 				<?php endif; ?>
 				<?php if ( $date_display ) : ?>
-					<time class="rss-card__date" datetime="<?php echo esc_attr( $datetime_attr ); ?>"><?php echo esc_html( $date_display ); ?></time>
+					<time class="sbird-latest-feed-card-block__date" datetime="<?php echo esc_attr( $datetime_attr ); ?>"><?php echo esc_html( $date_display ); ?></time>
 				<?php endif; ?>
 			</div>
 		</a>

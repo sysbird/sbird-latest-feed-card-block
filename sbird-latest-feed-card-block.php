@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       sBird Latest Feed Card Block
  * Description:       Display the latest entry from an external RSS feed.
- * Version:           1.0.0
+ * Version:           1.0.1
  * Requires at least: 6.7
  * Requires PHP:      7.4
  * Author:            sysbird
@@ -78,7 +78,7 @@ add_action( 'init', 'sbird_latest_feed_card_block_init' );
  * @return array
  */
 function sbird_latest_feed_card_block_filter_metadata_settings( $settings, $metadata ) {
-	if ( isset( $metadata['name'] ) && 'sysbird/rss-card' === $metadata['name'] ) {
+	if ( isset( $metadata['name'] ) && 'sysbird/sbird-latest-feed-card-block' === $metadata['name'] ) {
 		$settings['render_callback'] = 'sbird_latest_feed_card_block_render';
 	}
 
@@ -100,23 +100,23 @@ function sbird_latest_feed_card_block_enqueue_block_style() {
 			'url'  => plugins_url( 'build/style.css', __FILE__ ),
 		),
 		array(
-			'path' => __DIR__ . '/build/rss-card/style.css',
-			'url'  => plugins_url( 'build/rss-card/style.css', __FILE__ ),
+			'path' => __DIR__ . '/build/sbird-latest-feed-card-block/style.css',
+			'url'  => plugins_url( 'build/sbird-latest-feed-card-block/style.css', __FILE__ ),
 		),
 		array(
 			'path' => __DIR__ . '/build/editorStyle.css',
 			'url'  => plugins_url( 'build/editorStyle.css', __FILE__ ),
 		),
 		array(
-			'path' => __DIR__ . '/build/rss-card/editorStyle.css',
-			'url'  => plugins_url( 'build/rss-card/editorStyle.css', __FILE__ ),
+			'path' => __DIR__ . '/build/sbird-latest-feed-card-block/editorStyle.css',
+			'url'  => plugins_url( 'build/sbird-latest-feed-card-block/editorStyle.css', __FILE__ ),
 		),
 	);
 
 	foreach ( $candidates as $candidate ) {
 		if ( file_exists( $candidate['path'] ) ) {
 			wp_enqueue_style(
-				'rss-card-style',
+				'sbird-latest-feed-card-block-style',
 				$candidate['url'],
 				array(),
 				filemtime( $candidate['path'] )
@@ -145,23 +145,23 @@ function sbird_latest_feed_card_block_enqueue_editor_style() {
 			'url'  => plugins_url( 'build/editor.css', __FILE__ ),
 		),
 		array(
-			'path' => __DIR__ . '/build/rss-card/editor.css',
-			'url'  => plugins_url( 'build/rss-card/editor.css', __FILE__ ),
+			'path' => __DIR__ . '/build/sbird-latest-feed-card-block/editor.css',
+			'url'  => plugins_url( 'build/sbird-latest-feed-card-block/editor.css', __FILE__ ),
 		),
 		array(
 			'path' => __DIR__ . '/build/index.css',
 			'url'  => plugins_url( 'build/index.css', __FILE__ ),
 		),
 		array(
-			'path' => __DIR__ . '/build/rss-card/index.css',
-			'url'  => plugins_url( 'build/rss-card/index.css', __FILE__ ),
+			'path' => __DIR__ . '/build/sbird-latest-feed-card-block/index.css',
+			'url'  => plugins_url( 'build/sbird-latest-feed-card-block/index.css', __FILE__ ),
 		),
 	);
 
 	foreach ( $editor_candidates as $candidate ) {
 		if ( file_exists( $candidate['path'] ) ) {
 			wp_enqueue_style(
-				'rss-card-editor-style',
+				'sbird-latest-feed-card-block-editor-style',
 				$candidate['url'],
 				array(),
 				filemtime( $candidate['path'] )
@@ -173,7 +173,7 @@ function sbird_latest_feed_card_block_enqueue_editor_style() {
 add_action( 'enqueue_block_editor_assets', 'sbird_latest_feed_card_block_enqueue_editor_style' );
 
 /**
- * Render callback for the RSS Card block.
+ * Render callback for the sBird Latest Feed Card Block.
  *
  * @param array $attributes Block attributes.
  *
@@ -182,7 +182,7 @@ add_action( 'enqueue_block_editor_assets', 'sbird_latest_feed_card_block_enqueue
 function sbird_latest_feed_card_block_render( $attributes ) {
 	$render_file_candidates = array(
 		__DIR__ . '/render.php',
-		__DIR__ . '/build/rss-card/render.php',
+		__DIR__ . '/build/sbird-latest-feed-card-block/render.php',
 		__DIR__ . '/build/render.php',
 	);
 	$render_file = '';

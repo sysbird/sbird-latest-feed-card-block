@@ -23,9 +23,9 @@ export default function Edit( { attributes, setAttributes } ) {
 		return value;
 	};
 	const layoutValue = normalizeLayout( layout ) || 'horizontal';
-	const blockProps = useBlockProps( { className: 'rss-card-editor' } );
-	const placeholderClassName = `rss-card__placeholder${
-		hasBorder ? '' : ' rss-card__placeholder--borderless'
+	const blockProps = useBlockProps( { className: 'sbird-latest-feed-card-block-editor' } );
+	const placeholderClassName = `sbird-latest-feed-card-block__placeholder${
+		hasBorder ? '' : ' sbird-latest-feed-card-block__placeholder--borderless'
 	}`;
 
 	return (

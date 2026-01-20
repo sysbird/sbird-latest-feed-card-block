@@ -4,7 +4,7 @@ const path = require('path');
 const rootDir = path.resolve(__dirname, '..');
 const source = path.join(rootDir, 'src', 'icon.svg');
 const buildDir = path.join(rootDir, 'build');
-const buildNestedDir = path.join(buildDir, 'rss-card');
+const buildNestedDir = path.join(buildDir, 'sbird-latest-feed-card-block');
 
 const copyIcon = (destinationDir) => {
 	if (!fs.existsSync(destinationDir)) {

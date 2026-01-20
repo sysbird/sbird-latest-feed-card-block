@@ -47,7 +47,7 @@ for (const target of copyTargets) {
 	}
 
 	if (target === 'build') {
-		const nestedBuild = path.join(sourcePath, 'rss-card');
+		const nestedBuild = path.join(sourcePath, 'sbird-latest-feed-card-block');
 		const sourceBuildDir = fs.existsSync(nestedBuild) ? nestedBuild : sourcePath;
 		copyDirectoryContents(sourceBuildDir, distDir);
 		const manifest = path.join(sourcePath, 'blocks-manifest.php');
@@ -66,7 +66,7 @@ try {
 	if (fs.existsSync(zipPath)) {
 		fs.rmSync(zipPath, { force: true });
 	}
-	// Use system zip to create dist/rss-card.zip from dist/rss-card.
+	// Use system zip to create dist/sbird-latest-feed-card-block.zip from dist/sbird-latest-feed-card-block.
 	execFileSync('zip', ['-r', zipPath, 'sbird-latest-feed-card-block'], {
 		cwd: distRoot,
 		stdio: 'inherit',

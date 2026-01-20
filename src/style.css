@@ -5,17 +5,17 @@
  * Replace them with your own styles or remove the file completely.
  */
 
-.rss-card {
+.sbird-latest-feed-card-block {
 	overflow: hidden;
 	margin-bottom: 1.25em;
 }
 
-.rss-card--bordered {
+.sbird-latest-feed-card-block--bordered {
 	border: 1px solid #ddd;
 	border-radius: 10px;
 }
 
-.rss-card__link {
+.sbird-latest-feed-card-block__link {
 	display: flex;
 	gap: 1.25em;
 	align-items: stretch;
@@ -23,24 +23,24 @@
 	color: inherit;
 }
 
-.rss-card--layout-vertical .rss-card__link {
+.sbird-latest-feed-card-block--layout-vertical .sbird-latest-feed-card-block__link {
 	flex-direction: column;
 }
 
-.rss-card--bordered .rss-card__link {
+.sbird-latest-feed-card-block--bordered .sbird-latest-feed-card-block__link {
 	padding: 1.25em;
 }
 
-.rss-card__thumb {
+.sbird-latest-feed-card-block__thumb {
 	width: 140px;
 	flex-shrink: 0;
 }
 
-.rss-card--layout-vertical .rss-card__thumb {
+.sbird-latest-feed-card-block--layout-vertical .sbird-latest-feed-card-block__thumb {
 	width: 100%;
 }
 
-.rss-card__thumb img {
+.sbird-latest-feed-card-block__thumb img {
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
@@ -48,11 +48,11 @@
 	border-radius: 5px;
 }
 
-.rss-card__content {
+.sbird-latest-feed-card-block__content {
 	flex: 1;
 }
 
-.rss-card__source {
+.sbird-latest-feed-card-block__source {
 	display: inline-block;
 	font-size: .9em;
 	font-weight: bold;
@@ -62,22 +62,22 @@
 	margin-bottom: 0.35em;
 }
 
-.rss-card__title {
+.sbird-latest-feed-card-block__title {
 	font-size: 1.125em;
 	margin: 0 0 0.5em;
 }
 
-.rss-card__excerpt {
+.sbird-latest-feed-card-block__excerpt {
 	margin: 0 0 0.75em;
 }
 
-.rss-card__date {
+.sbird-latest-feed-card-block__date {
 	font-size: 0.875em;
 	color: #666;
 }
 
-.rss-card__placeholder,
-.rss-card__error {
+.sbird-latest-feed-card-block__placeholder,
+.sbird-latest-feed-card-block__error {
 	border: 1px dashed #c7ccd6;
 	border-radius: 12px;
 	padding: 1.5em;
@@ -86,25 +86,25 @@
 	background: #f8fafc;
 }
 
-.rss-card__placeholder--borderless,
-.rss-card__error--borderless {
+.sbird-latest-feed-card-block__placeholder--borderless,
+.sbird-latest-feed-card-block__error--borderless {
 	border: 0;
 	border-radius: 0;
 	background: transparent;
 }
 
-.rss-card__error {
+.sbird-latest-feed-card-block__error {
 	border-color: #d14343;
 	color: #b42318;
 	background: #fff5f5;
 }
 
 @media (max-width: 600px) {
-	.rss-card__link {
+	.sbird-latest-feed-card-block__link {
 		flex-direction: column;
 	}
 
-	.rss-card__thumb {
+	.sbird-latest-feed-card-block__thumb {
 		width: 100%;
 	}
 }
