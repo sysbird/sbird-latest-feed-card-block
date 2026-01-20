@@ -1,7 +1,5 @@
 /**
  * The following styles get applied inside the editor only.
- *
- * Replace them with your own styles or remove the file completely.
  */
 
 .sbird-latest-feed-card-block-editor {
@@ -9,9 +7,8 @@
 	border: 1px dotted #ccc;
 	padding: 5px;
 	margin-bottom: 1em;
-}
 
-.sbird-latest-feed-card-block-editor .sbird-latest-feed-card-block__link {
-	pointer-events: none;
+	.sbird-latest-feed-card-block__link {
+		pointer-events: none;
+	}
 }
-

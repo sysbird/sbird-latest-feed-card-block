@@ -9,7 +9,7 @@ import { PanelBody, RadioControl, TextControl, ToggleControl } from '@wordpress/
 import ServerSideRender from '@wordpress/server-side-render';
 
 import metadata from './block.json';
-import './editor.css';
+import './editor.scss';
 
 export default function Edit( { attributes, setAttributes } ) {
 	const { feedUrl, hasBorder, layout } = attributes;
@@ -70,7 +70,7 @@ export default function Edit( { attributes, setAttributes } ) {
 					<ServerSideRender block={ metadata.name } attributes={ attributes } />
 				) : (
 					<p className={ placeholderClassName }>
-						{ __( 'Enter an RSS URL.', 'sbird-latest-feed-card-block' ) }
+						{ __( 'Enter an Feed URL.', 'sbird-latest-feed-card-block' ) }
 					</p>
 				) }
 			</div>
